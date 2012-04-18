@@ -1,0 +1,22 @@
+{
+    "name": "zf2/zf2",
+    "type": "library",
+    "description": "Zend Framework 2",
+    "keywords": ["framework"],
+    "homepage": "http://framework.zend.com/zf2/",
+    "license": "New BSD",
+    "authors": [
+        {
+            "name": "Zend Community",
+            "homepage": "http://framework.zend.com/community/contributors"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2"
+    },
+    "autoload": {
+        "psr-0": {
+            "Zend": "library/"
+        }
+    }
+}
