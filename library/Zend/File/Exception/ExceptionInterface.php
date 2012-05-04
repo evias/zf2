@@ -12,22 +12,22 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category  Zend
- * @package   Zend_ProgressBar
+ * @category   Zend
+ * @package    Zend_File
+ * @subpackage Exception
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace Zend\ProgressBar;
+namespace Zend\File\Exception;
 
 /**
- * Exception class for Zend_ProgressBar
- *
- * @category  Zend
- * @package   Zend_ProgressBar
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * Marker interface for exceptions found in this component
+ * 
+ * @package    Zend_File
+ * @subpackage Exception
+ * @license    New BSD {@link http://framework.zend.com/license/new-bsd}
  */
-interface Exception
+interface ExceptionInterface
 {
 }

@@ -13,22 +13,24 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category  Zend
- * @package   Zend_File_Transfer
+ * @package   Zend_ProgressBar
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace Zend\File\Transfer;
+namespace Zend\ProgressBar\Adapter\Exception;
+
+use Zend\ProgressBar\Exception\ExceptionInterface as ProgressBarException;
 
 /**
- * Exception class for Zend\File\Transfer
+ * Exception class for Zend_ProgressBar_Adapter
  *
- * @category   Zend
- * @package    Zend_File_Transfer
+ * @category  Zend
+ * @package   Zend_ProgressBar
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-interface Exception
+interface ExceptionInterface
+    extends ProgressBarException
 {
-
 }
