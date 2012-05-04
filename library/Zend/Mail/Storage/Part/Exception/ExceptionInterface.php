@@ -14,26 +14,23 @@
  *
  * @category   Zend
  * @package    Zend_Mail
- * @subpackage Header
+ * @subpackage Storage
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @version    $Id$
  */
 
-namespace Zend\Mail\Header;
+namespace Zend\Mail\Storage\Part\Exception;
+
+use Zend\Mail\Storage\Exception\ExceptionInterface as StorageException;
 
 /**
  * @category   Zend
  * @package    Zend_Mail
- * @subpackage Header
+ * @subpackage Storage
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-interface StructuredHeader
+interface ExceptionInterface extends StorageException
 {
-    /**
-     * Return the delimiter at which a header line should be wrapped
-     * 
-     * @return string
-     */
-    public function getDelimiter();
 }

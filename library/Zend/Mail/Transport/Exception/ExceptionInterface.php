@@ -14,25 +14,20 @@
  *
  * @category   Zend
  * @package    Zend_Mail
- * @subpackage Storage
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @version    $Id$
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace Zend\Mail\Storage\Exception;
+namespace Zend\Mail\Transport\Exception;
+
+use Zend\Mail\Exception\ExceptionInterface as MailException;
 
 /**
- * Exception for Zend_Mail component.
- *
  * @category   Zend
  * @package    Zend_Mail
- * @subpackage Storage
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class OutOfBoundsException
-    extends \OutOfBoundsException
-    implements ExceptionInterface
+interface ExceptionInterface extends MailException
 {
 }
