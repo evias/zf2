@@ -12,21 +12,21 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
+ * @category  Zend
+ * @package   Zend_Text
+ * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ */
+
+namespace Zend\Text\Figlet\Exception;
+
+use Zend\Text\Exception\ExceptionInterface as Exception;
+
+/**
  * @category   Zend
- * @package    Zend_Serializer
+ * @package    Zend_Text
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-
-namespace Zend\Serializer;
-
-/**
- * @uses      Zend\Exception
- * @category  Zend
- * @package   Zend_Serializer
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
-interface Exception
-{
-}
+interface ExceptionInterface extends Exception
+{}

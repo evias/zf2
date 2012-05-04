@@ -12,41 +12,19 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Tag
- * @subpackage Cloud
+ * @category  Zend
+ * @package   Zend_Text
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace Zend\Tag\Cloud;
+namespace Zend\Text\Exception;
 
 /**
- * Interface for decorators
- *
  * @category   Zend
- * @package    Zend_Tag
- * @subpackage Cloud
+ * @package    Zend_Text
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-interface Decorator
-{
-    /**
-     * Constructor
-     *
-     * Allow passing options to the constructor.
-     * 
-     * @param  mixed $options 
-     * @return void
-     */
-    public function __construct($options = null);
-
-    /**
-     * Render a list of tags
-     * 
-     * @param  mixed $tags 
-     * @return string
-     */
-    public function render($tags);
-}
+interface ExceptionInterface
+{}
