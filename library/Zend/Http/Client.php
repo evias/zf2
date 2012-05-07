@@ -1077,7 +1077,7 @@ class Client implements Dispatchable
                 $fstat = fstat($body);
                 $headers['Content-Length'] = $fstat['size'];
             } else {
-                $headers['Content-Length'] = static::strlen($body);
+                $headers['Content-Length'] = strlen($body);
             }
         }
 
@@ -1204,7 +1204,7 @@ class Client implements Dispatchable
     public function encodeFormData($boundary, $name, $value, $filename = null, $headers = array())
     {
         $ret = "--{$boundary}\r\n" .
-            'Content-Disposition: form-data; name="' . $name .'"';
+            'Content-Disposition: form-data; name="' . $name . '"';
 
         if ($filename) {
             $ret .= '; filename="' . $filename . '"';
@@ -1215,7 +1215,6 @@ class Client implements Dispatchable
             $ret .= "{$hname}: {$hvalue}\r\n";
         }
         $ret .= "\r\n";
-
         $ret .= "{$value}\r\n";
 
         return $ret;
@@ -1297,21 +1296,5 @@ class Client implements Dispatchable
             $uri, $this->config['httpversion'], $headers, $body);
 
         return $this->adapter->read();
-    }
-
-    /**
-     * Returns length of binary string in bytes
-     *
-     * @param string $str
-     * @return int the string length
-     */
-    static public function strlen($str)
-    {
-        if (function_exists('mb_internal_encoding') &&
-            (((int)ini_get('mbstring.func_overload')) & 2)) {
-            return mb_strlen($str, '8bit');
-        } else {
-            return strlen($str);
-        }
     }
 }
