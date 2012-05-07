@@ -13,44 +13,23 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Search_Lucene
- * @subpackage Search
+ * @package    Zend_Filter
+ * @subpackage Exception
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace Zend\Search\Lucene\Search;
+namespace Zend\Filter\Exception;
 
-use Zend\Search\Lucene\Document;
+use Zend\Filter\Exception;
 
 /**
- * @uses       \Zend\Search\Lucene\Document
  * @category   Zend
- * @package    Zend_Search_Lucene
- * @subpackage Search
+ * @package    Zend_Filter
+ * @subpackage Exception
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-interface Highlighter
+class DomainException extends \DomainException implements Exception
 {
-    /**
-     * Set document for highlighting.
-     *
-     * @param \Zend\Search\Lucene\Document\HTML $document
-     */
-    public function setDocument(Document\HTML $document);
-
-    /**
-     * Get document for highlighting.
-     *
-     * @return \Zend\Search\Lucene\Document\HTML $document
-     */
-    public function getDocument();
-
-    /**
-     * Highlight specified words (method is invoked once per subquery)
-     *
-     * @param string|array $words  Words to highlight. They could be organized using the array or string.
-     */
-    public function highlight($words);
 }

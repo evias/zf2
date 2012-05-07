@@ -19,10 +19,12 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace Zend\Search\Lucene\Analysis;
+namespace Zend\Search\Lucene\Analysis\TokenFilter;
+
+use Zend\Search\Lucene\Analysis\Token;
 
 /**
- * An Analyzer is used to analyze text.
+ * Token filter converts (normalizes) Token ore removes it from a token stream.
  *
  * @category   Zend
  * @package    Zend_Search_Lucene
@@ -30,40 +32,13 @@ namespace Zend\Search\Lucene\Analysis;
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-interface Analyzer
+interface TokenFilterInterface
 {
     /**
-     * Tokenize text to terms
-     * Returns array of Zend\Search\Lucene\Analysis\Token objects
+     * Normalize Token or remove it (if null is returned)
      *
-     * Tokens are returned in UTF-8 (internal Zend_Search_Lucene encoding)
-     *
-     * @param string $data
-     * @return array
+     * @param \Zend\Search\Lucene\Analysis\Token $srcToken
+     * @return \Zend\Search\Lucene\Analysis\Token
      */
-    public function tokenize($data, $encoding = '');
-
-    /**
-     * Tokenization stream API
-     * Set input
-     *
-     * @param string $data
-     */
-    public function setInput($data, $encoding = '');
-
-    /**
-     * Reset token stream
-     */
-    public function reset();
-
-    /**
-     * Tokenization stream API
-     * Get next token
-     * Returns null at the end of stream
-     *
-     * Tokens are returned in UTF-8 (internal Zend_Search_Lucene encoding)
-     *
-     * @return \Zend\Search\Lucene\Analysis\Token|null
-     */
-    public function nextToken();
+    public function normalize(Token $srcToken);
 }
