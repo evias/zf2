@@ -13,32 +13,22 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Gdata
- * @subpackage GBase
+ * @package    Zend_Queue
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace Zend\GData\GBase;
+namespace Zend\Queue\Exception;
 
 /**
- * Represents the Google Base Snippets Feed
+ * Exception for Zend_Queue component.
  *
- * @link http://code.google.com/apis/base/
- *
- * @uses       \Zend\GData\GBase\Feed
  * @category   Zend
- * @package    Zend_Gdata
- * @subpackage GBase
+ * @package    Zend_Queue
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class SnippetFeed extends \Zend\GData\Feed
+class DomainException 
+    extends \DomainException implements ExceptionInterface
 {
-    /**
-     * The classname for individual snippet feed elements.
-     *
-     * @var string
-     */
-    protected $_entryClassName = 'Zend\GData\GBase\SnippetEntry';
 }

@@ -13,35 +13,22 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_GData_GBase
- * @subpackage UnitTests
+ * @package    Zend_Queue
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace ZendTest\GData\GBase;
+namespace Zend\Queue\Exception;
 
 /**
+ * This Exception will throw, when connection is not good.
+ *
  * @category   Zend
- * @package    Zend_GData_GBase
- * @subpackage UnitTests
+ * @package    Zend_Queue
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_GData
- * @group      Zend_GData_GBase
  */
-class QueryTest extends \PHPUnit_Framework_TestCase
+class ConnectionException
+    extends \RuntimeException implements ExceptionInterface
 {
-
-    public function setUp()
-    {
-        $this->query = new \Zend\GData\GBase\Query();
-    }
-
-    public function testKey()
-    {
-        $this->query->setKey('xyz');
-        $this->assertEquals($this->query->getKey(), 'xyz');
-    }
-
 }

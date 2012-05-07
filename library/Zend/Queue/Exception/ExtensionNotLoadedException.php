@@ -13,47 +13,22 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Gdata
- * @subpackage GBase
+ * @package    Zend_Queue
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace Zend\GData\GBase;
-
-use Zend\GData\GBase;
+namespace Zend\Queue\Exception;
 
 /**
- * Base class for the Google Base Feed
+ * Exception for Zend_Queue component.
  *
- * @link http://code.google.com/apis/base/
- *
- * @uses       \Zend\GData\Feed
- * @uses       \Zend\GData\GBase
  * @category   Zend
- * @package    Zend_Gdata
- * @subpackage GBase
+ * @package    Zend_Queue
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Feed extends \Zend\GData\Feed
+class ExtensionNotLoadedException
+    extends \RuntimeException implements ExceptionInterface
 {
-    /**
-     * The classname for the feed.
-     *
-     * @var string
-     */
-    protected $_feedClassName = 'Zend\GData\GBase\Feed';
-
-    /**
-     * Create a new instance.
-     *
-     * @param DOMElement $element (optional) DOMElement from which this
-     *          object should be constructed.
-     */
-    public function __construct($element = null)
-    {
-        $this->registerAllNamespaces(GBase::$namespaces);
-        parent::__construct($element);
-    }
 }

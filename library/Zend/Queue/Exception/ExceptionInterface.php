@@ -13,32 +13,21 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Gdata
- * @subpackage GBase
+ * @package    Zend_Queue
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace Zend\GData\GBase;
+namespace Zend\Queue\Exception;
 
 /**
- * Represents the Google Base Customer Items Feed
+ * Base exception interface
  *
- * @link http://code.google.com/apis/base/
- *
- * @uses       \Zend\GData\GBase\Feed
  * @category   Zend
- * @package    Zend_Gdata
- * @subpackage GBase
+ * @package    Zend_Queue
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ItemFeed extends \Zend\GData\Feed
+interface ExceptionInterface
 {
-    /**
-     * The classname for individual item feed elements.
-     *
-     * @var string
-     */
-    protected $_entryClassName = 'Zend\GData\GBase\ItemEntry';
 }

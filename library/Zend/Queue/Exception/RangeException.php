@@ -13,32 +13,22 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Gdata
- * @subpackage GBase
+ * @package    Zend_Queue
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace Zend\GData\GBase;
+namespace Zend\Queue\Exception;
 
 /**
- * Concrete class for working with Snippet entries.
+ * Exception for Zend_Queue component.
  *
- * @link http://code.google.com/apis/base/
- *
- * @uses       \Zend\GData\GBase\Entry
  * @category   Zend
- * @package    Zend_Gdata
- * @subpackage GBase
+ * @package    Zend_Queue
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class SnippetEntry extends Entry
+class RangeException 
+    extends \RangeException implements ExceptionInterface
 {
-    /**
-     * The classname for individual snippet entry elements.
-     *
-     * @var string
-     */
-    protected $_entryClassName = 'Zend\GData\GBase\SnippetEntry';
 }

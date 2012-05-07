@@ -13,37 +13,22 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Gdata
- * @subpackage Health
+ * @package    Zend_Queue
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace Zend\GData\Health;
+namespace Zend\Queue\Exception;
 
 /**
- * Represents a Google Health user's Profile List Feed
+ * This Exception will throw, when queue not found
  *
- * @link http://code.google.com/apis/health/
- *
- * @uses       \Zend\GData\Feed
  * @category   Zend
- * @package    Zend_Gdata
- * @subpackage Health
+ * @package    Zend_Queue
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ProfileListFeed extends \Zend\GData\Feed
+class QueueNotFoundException
+    extends \RuntimeException implements ExceptionInterface
 {
-    /**
-     * The class name for individual profile feed elements.
-     *
-     * @var string
-     */
-    protected $_entryClassName = '\Zend\GData\Health\ProfileListEntry';
-
-    public function getEntries()
-    {
-        return $this->entry;
-    }
 }
