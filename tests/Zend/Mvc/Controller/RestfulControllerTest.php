@@ -134,10 +134,10 @@ class RestfulControllerTest extends TestCase
         $response = new Response();
         $response->setContent('short circuited!');
         $events = new SharedEventManager();
-        $events->attach('Zend\Stdlib\Dispatchable', 'dispatch', function($e) use ($response) {
+        $events->attach('Zend\Stdlib\DispatchableInterface', 'dispatch', function($e) use ($response) {
             return $response;
         }, 10);
-        $this->controller->events()->setSharedCollections($events);
+        $this->controller->events()->setSharedManager($events);
         $result = $this->controller->dispatch($this->request, $this->response);
         $this->assertSame($response, $result);
     }
@@ -150,7 +150,7 @@ class RestfulControllerTest extends TestCase
         $events->attach('Zend\Mvc\Controller\RestfulController', 'dispatch', function($e) use ($response) {
             return $response;
         }, 10);
-        $this->controller->events()->setSharedCollections($events);
+        $this->controller->events()->setSharedManager($events);
         $result = $this->controller->dispatch($this->request, $this->response);
         $this->assertSame($response, $result);
     }
@@ -163,7 +163,7 @@ class RestfulControllerTest extends TestCase
         $events->attach(get_class($this->controller), 'dispatch', function($e) use ($response) {
             return $response;
         }, 10);
-        $this->controller->events()->setSharedCollections($events);
+        $this->controller->events()->setSharedManager($events);
         $result = $this->controller->dispatch($this->request, $this->response);
         $this->assertSame($response, $result);
     }

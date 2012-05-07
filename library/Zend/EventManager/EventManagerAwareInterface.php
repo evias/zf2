@@ -14,67 +14,29 @@
  *
  * @category   Zend
  * @package    Zend_EventManager
+ * @subpackage UnitTest
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 namespace Zend\EventManager;
 
-use Zend\Stdlib\CallbackHandler;
-
 /**
- * Interface for intercepting filter chains
+ * Interface to automate setter injection for an EventManager instance
  *
  * @category   Zend
  * @package    Zend_EventManager
+ * @subpackage UnitTest
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-interface Filter
+interface EventManagerAwareInterface
 {
     /**
-     * Execute the filter chain
+     * Inject an EventManager instance
      * 
-     * @param  string|object $context 
-     * @param  array $params 
-     * @return mixed
-     */
-    public function run($context, array $params = array());
-
-    /**
-     * Attach an intercepting filter
-     * 
-     * @param  callback $callback 
-     * @return CallbackHandler
-     */
-    public function attach($callback);
-
-    /**
-     * Detach an intercepting filter
-     * 
-     * @param  CallbackHandler $filter 
-     * @return bool
-     */
-    public function detach(CallbackHandler $filter);
-
-    /**
-     * Get all intercepting filters
-     * 
-     * @return array
-     */
-    public function getFilters();
-
-    /**
-     * Clear all filters
-     * 
+     * @param  EventManagerInterface $eventManager
      * @return void
      */
-    public function clearFilters();
-
-    /**
-     * Get all filter responses
-     * 
-     * @return ResponseCollection
-     */
-    public function getResponses();
+    public function setEventManager(EventManagerInterface $eventManager);
 }

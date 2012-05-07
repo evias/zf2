@@ -13,43 +13,30 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Stdlib
+ * @package    Zend_EventManager
+ * @subpackage UnitTest
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace Zend\Stdlib;
+namespace Zend\EventManager;
 
 /**
+ * Interface to automate setter injection for a SharedEventManagerInterface instance
+ *
  * @category   Zend
- * @package    Zend_Stdlib
+ * @package    Zend_EventManager
+ * @subpackage UnitTest
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-interface ParameterObject
+interface SharedEventManagerAwareInterface
 {
     /**
-     * @param string $key
-     * @param mixed $value
-     * @return void
+     * Inject a SharedEventManager instance
+     * 
+     * @param  SharedEventManagerInterface $sharedEventManager
+     * @return SharedEventManagerAwareInterface
      */
-    public function __set($key, $value);
-
-    /**
-     * @param string $key
-     * @return mixed
-     */
-    public function __get($key);
-
-    /**
-     * @param string $key
-     * @return boolean
-     */
-    public function __isset($key);
-
-    /**
-     * @param string $key
-     * @return void
-     */
-    public function __unset($key);
+    public function setSharedManager(SharedEventManagerInterface $sharedEventManager);
 }

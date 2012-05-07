@@ -21,12 +21,12 @@
 
 namespace Zend\Mvc\View;
 
-use Zend\EventManager\EventCollection,
+use Zend\EventManager\EventManagerInterface,
     Zend\EventManager\ListenerAggregate,
     Zend\Http\Response as HttpResponse,
     Zend\Mvc\Application,
     Zend\Mvc\MvcEvent,
-    Zend\Stdlib\ResponseDescription as Response,
+    Zend\Stdlib\ResponseInterface as Response,
     Zend\View\Model\ViewModel;
 
 /**
@@ -58,10 +58,10 @@ class ExceptionStrategy implements ListenerAggregate
     /**
      * Attach the aggregate to the specified event manager
      *
-     * @param  EventCollection $events
+     * @param  EventManagerInterface $events
      * @return void
      */
-    public function attach(EventCollection $events)
+    public function attach(EventManagerInterface $events)
     {
         $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH_ERROR, array($this, 'prepareExceptionViewModel'));
     }
@@ -69,10 +69,10 @@ class ExceptionStrategy implements ListenerAggregate
     /**
      * Detach aggregate listeners from the specified event manager
      *
-     * @param  EventCollection $events
+     * @param  EventManagerInterface $events
      * @return void
      */
-    public function detach(EventCollection $events)
+    public function detach(EventManagerInterface $events)
     {
         foreach ($this->listeners as $index => $listener) {
             if ($events->detach($listener)) {

@@ -13,30 +13,43 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_EventManager
- * @subpackage UnitTest
+ * @package    Zend_Stdlib
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace Zend\EventManager;
+namespace Zend\Stdlib;
 
 /**
- * Interface to automate setter injection for an EventManager instance
- *
  * @category   Zend
- * @package    Zend_EventManager
- * @subpackage UnitTest
+ * @package    Zend_Stdlib
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-interface EventManagerAware
+interface ParameterObjectInterface
 {
     /**
-     * Inject an EventManager instance
-     * 
-     * @param  EventCollection $eventManager 
+     * @param string $key
+     * @param mixed $value
      * @return void
      */
-    public function setEventManager(EventCollection $eventManager);
+    public function __set($key, $value);
+
+    /**
+     * @param string $key
+     * @return mixed
+     */
+    public function __get($key);
+
+    /**
+     * @param string $key
+     * @return boolean
+     */
+    public function __isset($key);
+
+    /**
+     * @param string $key
+     * @return void
+     */
+    public function __unset($key);
 }

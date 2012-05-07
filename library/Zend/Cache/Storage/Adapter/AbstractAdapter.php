@@ -31,9 +31,9 @@ use ArrayObject,
     Zend\Cache\Storage\ExceptionEvent,
     Zend\Cache\Storage\PostEvent,
     Zend\Cache\Storage\Plugin,
-    Zend\EventManager\EventCollection,
     Zend\EventManager\EventManager,
-    Zend\EventManager\EventManagerAware;
+    Zend\EventManager\EventManagerAwareInterface,
+    Zend\EventManager\EventManagerInterface;
 
 /**
  * @category   Zend
@@ -42,7 +42,7 @@ use ArrayObject,
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class AbstractAdapter implements AdapterInterface, EventManagerAware
+abstract class AbstractAdapter implements AdapterInterface, EventManagerAwareInterface
 {
     /**
      * The used EventManager if any
@@ -224,11 +224,15 @@ abstract class AbstractAdapter implements AdapterInterface, EventManagerAware
     /**
      * Set event manager instance
      *
-     * @param  EventCollection $events
+     * @param  EventManagerInterface $events
      * @return AbstractAdapter
      */
-    public function setEventManager(EventCollection $events)
+    public function setEventManager(EventManagerInterface $events)
     {
+        $events->setIdentifiers(array(
+            __CLASS__,
+            get_called_class(),
+        ));
         $this->events = $events;
         return $this;
     }
@@ -241,10 +245,7 @@ abstract class AbstractAdapter implements AdapterInterface, EventManagerAware
     public function events()
     {
         if ($this->events === null) {
-            $this->setEventManager(new EventManager(array(
-                __CLASS__,
-                get_called_class(),
-            )));
+            $this->setEventManager(new EventManager());
         }
         return $this->events;
     }

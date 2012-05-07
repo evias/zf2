@@ -4,12 +4,12 @@ namespace Zend\Mvc;
 use Zend\Di\Configuration as DiConfiguration,
     Zend\Di\Di,
     Zend\Config\Config,
-    Zend\EventManager\EventCollection as Events,
+    Zend\EventManager\EventManagerInterface as Events,
     Zend\EventManager\EventManager,
-    Zend\EventManager\EventManagerAware,
+    Zend\EventManager\EventManagerAwareInterface,
     Zend\Mvc\Router\Http\TreeRouteStack as Router;
 
-class Bootstrap implements BootstrapInterface, EventManagerAware
+class Bootstrap implements BootstrapInterface, EventManagerAwareInterface
 {
     /**
      * @var \Zend\Config\Config
@@ -17,7 +17,7 @@ class Bootstrap implements BootstrapInterface, EventManagerAware
     protected $config;
 
     /**
-     * @var EventCollection
+     * @var EventManagerInterface
      */
     protected $events;
 
@@ -96,12 +96,12 @@ class Bootstrap implements BootstrapInterface, EventManagerAware
     protected function setupLocator(ApplicationInterface $application)
     {
         $events       = $this->events();
-        $sharedEvents = $events->getSharedCollections();
+        $sharedEvents = $events->getSharedManager();
 
         $di = new Di;
         $di->instanceManager()->addTypePreference('Zend\Di\Locator', $di);
         $di->instanceManager()->addSharedInstance($sharedEvents, 'Zend\EventManager\SharedEventManager');
-        $di->instanceManager()->addSharedInstance($sharedEvents, 'Zend\EventManager\SharedEventCollection');
+        $di->instanceManager()->addSharedInstance($sharedEvents, 'Zend\EventManager\SharedEventManagerInterface');
 
         // Default configuration for common MVC classes
         $diConfig = new DiConfiguration(array('definition' => array('class' => array(
@@ -225,10 +225,10 @@ class Bootstrap implements BootstrapInterface, EventManagerAware
             ),
         )), 'instance' => array(
             'preferences' => array(
-                // Use EventManager for EventCollection
-                'Zend\EventManager\EventCollection' => 'Zend\EventManager\EventManager',
-                // Use SharedEventManager for SharedEventCollection
-                'Zend\EventManager\SharedEventCollection' => 'Zend\EventManager\SharedEventManager',
+                // Use EventManager for EventManagerInterface
+                'Zend\EventManager\EventManagerInterface' => 'Zend\EventManager\EventManager',
+                // Use SharedEventManager for SharedEventManagerInterface
+                'Zend\EventManager\SharedEventManagerInterface' => 'Zend\EventManager\SharedEventManager',
             ),
             'Zend\EventManager\EventManager' => array(
                 'shared' => false, // new instance per class needing an instance
@@ -269,7 +269,7 @@ class Bootstrap implements BootstrapInterface, EventManagerAware
         // Basic view strategy
         $locator             = $application->getLocator();
         $events              = $application->events();
-        $sharedEvents        = $locator->get('Zend\EventManager\SharedEventCollection');
+        $sharedEvents        = $locator->get('Zend\EventManager\SharedEventManagerInterface');
         $view                = $locator->get('Zend\View\View');
         $phpRendererStrategy = $locator->get('Zend\View\Strategy\PhpRendererStrategy');
         $defaultViewStrategy = $locator->get('Zend\Mvc\View\DefaultRenderingStrategy');
@@ -286,12 +286,12 @@ class Bootstrap implements BootstrapInterface, EventManagerAware
         $createViewModelListener = $locator->get('Zend\Mvc\View\CreateViewModelListener');
         $injectTemplateListener  = $locator->get('Zend\Mvc\View\InjectTemplateListener');
         $injectViewModelListener = $locator->get('Zend\Mvc\View\InjectViewModelListener');
-        $sharedEvents->attach('Zend\Stdlib\Dispatchable', MvcEvent::EVENT_DISPATCH, array($createViewModelListener, 'createViewModelFromArray'), -80);
-        $sharedEvents->attach('Zend\Stdlib\Dispatchable', MvcEvent::EVENT_DISPATCH, array($noRouteStrategy, 'prepareNotFoundViewModel'), -90);
-        $sharedEvents->attach('Zend\Stdlib\Dispatchable', MvcEvent::EVENT_DISPATCH, array($createViewModelListener, 'createViewModelFromNull'), -80);
-        $sharedEvents->attach('Zend\Stdlib\Dispatchable', MvcEvent::EVENT_DISPATCH, array($injectTemplateListener, 'injectTemplate'), -90);
+        $sharedEvents->attach('Zend\Stdlib\DispatchableInterface', MvcEvent::EVENT_DISPATCH, array($createViewModelListener, 'createViewModelFromArray'), -80);
+        $sharedEvents->attach('Zend\Stdlib\DispatchableInterface', MvcEvent::EVENT_DISPATCH, array($noRouteStrategy, 'prepareNotFoundViewModel'), -90);
+        $sharedEvents->attach('Zend\Stdlib\DispatchableInterface', MvcEvent::EVENT_DISPATCH, array($createViewModelListener, 'createViewModelFromNull'), -80);
+        $sharedEvents->attach('Zend\Stdlib\DispatchableInterface', MvcEvent::EVENT_DISPATCH, array($injectTemplateListener, 'injectTemplate'), -90);
         $events->attach(MvcEvent::EVENT_DISPATCH_ERROR, array($injectViewModelListener, 'injectViewModel'), -100);
-        $sharedEvents->attach('Zend\Stdlib\Dispatchable', MvcEvent::EVENT_DISPATCH, array($injectViewModelListener, 'injectViewModel'), -100);
+        $sharedEvents->attach('Zend\Stdlib\DispatchableInterface', MvcEvent::EVENT_DISPATCH, array($injectViewModelListener, 'injectViewModel'), -100);
 
         // Inject MVC Event with view model
         $mvcEvent  = $application->getMvcEvent();
@@ -315,8 +315,8 @@ class Bootstrap implements BootstrapInterface, EventManagerAware
      */
     protected function setupEvents(ApplicationInterface $application)
     {
-        $application->events()->setSharedCollections(
-            $this->events()->getSharedCollections()
+        $application->events()->setSharedManager(
+            $this->events()->getSharedManager()
         );
         $params = array(
             'application' => $application,

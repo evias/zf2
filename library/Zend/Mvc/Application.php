@@ -5,17 +5,17 @@ namespace Zend\Mvc;
 use ArrayObject,
     Zend\Di\Exception\ClassNotFoundException,
     Zend\Di\Locator,
-    Zend\EventManager\EventCollection,
+    Zend\EventManager\EventManagerInterface,
     Zend\EventManager\EventManager,
     Zend\Http\Header\Cookie,
     Zend\Http\PhpEnvironment\Request as PhpHttpRequest,
     Zend\Http\PhpEnvironment\Response as PhpHttpResponse,
     Zend\Uri\Http as HttpUri,
-    Zend\Stdlib\Dispatchable,
+    Zend\Stdlib\DispatchableInterface as Dispatchable,
     Zend\Stdlib\ArrayUtils,
     Zend\Stdlib\Parameters,
-    Zend\Stdlib\RequestDescription as Request,
-    Zend\Stdlib\ResponseDescription as Response;
+    Zend\Stdlib\RequestInterface as Request,
+    Zend\Stdlib\ResponseInterface as Response;
 
 /**
  * Main application class for invoking applications
@@ -43,10 +43,10 @@ class Application implements ApplicationInterface
     /**
      * Set the event manager instance used by this context
      *
-     * @param  EventCollection $events
+     * @param  EventManagerInterface $events
      * @return Application
      */
-    public function setEventManager(EventCollection $events)
+    public function setEventManager(EventManagerInterface $events)
     {
         $events->setIdentifiers(array(__CLASS__, get_class($this)));
         $this->events = $events;
@@ -189,11 +189,11 @@ class Application implements ApplicationInterface
      *
      * Lazy-loads an EventManager instance if none registered.
      *
-     * @return EventCollection
+     * @return EventManagerInterface
      */
     public function events()
     {
-        if (!$this->events instanceof EventCollection) {
+        if (!$this->events instanceof EventManagerInterface) {
             $this->setEventManager(new EventManager());
         }
         return $this->events;
@@ -405,7 +405,7 @@ class Application implements ApplicationInterface
     /**
      * Attach default listeners for route and dispatch events
      *
-     * @param  EventCollection $events
+     * @param  EventManagerInterface $events
      * @return void
      */
     protected function attachDefaultListeners()
