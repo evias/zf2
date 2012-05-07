@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Zend Framework
  *
@@ -14,22 +13,41 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Feed
+ * @package    Zend_OAuth
+ * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @version    $Id:$
  */
 
-namespace Zend\Feed\Writer\Exception;
+namespace ZendTest\OAuth\Config;
+
 
 /**
- * Feed exceptions
- *
- * Class to represent exceptions that occur during Feed operations.
- *
  * @category   Zend
- * @package    Zend_Feed
+ * @package    Zend_OAuth
+ * @subpackage UnitTests
+ * @group      Zend_OAuth
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class InvalidMethodException extends \Exception implements ExceptionInterface
-{}
+use Zend\OAuth\Config\StandardConfig;
+
+class StandardConfigurationTest extends \PHPUnit_Framework_TestCase
+{
+
+    public function testSiteUrlArePropertlyBuiltFromDefaultPaths()
+    {
+    	$config = new StandardConfig(
+    		array(
+    			'siteUrl'	=> 'https://example.com/oauth/'
+    		)
+    	);
+    	$this->assertEquals('https://example.com/oauth/authorize', $config->getAuthorizeUrl());
+    	$this->assertEquals('https://example.com/oauth/request_token', $config->getRequestTokenUrl());
+    	$this->assertEquals('https://example.com/oauth/access_token', $config->getAccessTokenUrl());
+    	
+    }
+
+}
+
