@@ -13,18 +13,27 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_View
+ * @package    Zend_Mvc
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace Zend\View;
+namespace Zend\Mvc;
 
 /**
- * @category   Zend
- * @package    Zend_View
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * Interface for bootstraps
+ * 
+ * @package   Zend_Mvc
+ * @copyright Copyright (C) 2005-2011, Zend Technologies, Inc.
+ * @license   New BSD {@link http://framework.zend.com/license}
  */
-interface Exception
-{}
+interface BootstrapInterface
+{
+    /**
+     * Bootstrap an application
+     * 
+     * @param  ApplicationInterface $application
+     * @return void
+     */
+    public function bootstrap(ApplicationInterface $application);
+}
