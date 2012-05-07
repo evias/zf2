@@ -14,20 +14,36 @@
  *
  * @category   Zend
  * @package    Zend_Soap
- * @subpackage AutoDiscover
+ * @subpackage WSDL
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace Zend\Soap;
+namespace Zend\Soap\Wsdl\ComplexTypeStrategy;
 
 /**
+ * Interface strategies that generate an XSD-Schema for complex data types in WSDL files.
+ *
  * @category   Zend
  * @package    Zend_Soap
- * @subpackage AutoDiscover
+ * @subpackage WSDL
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-interface Exception
+interface ComplexTypeStrategyInterface
 {
+    /**
+     * Method accepts the current WSDL context file.
+     *
+     * @param <type> $context
+     */
+    public function setContext(\Zend\Soap\Wsdl $context);
+
+    /**
+     * Create a complex type based on a strategy
+     *
+     * @param  string $type
+     * @return string XSD type
+     */
+    public function addComplexType($type);
 }

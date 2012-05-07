@@ -13,21 +13,22 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Dom
+ * @package    Zend_Service
+ * @subpackage Twitter
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace Zend\Dom;
+namespace Zend\Service\Twitter\Exception;
+
+use Zend\Service\Twitter\Exception;
 
 /**
- * Zend_Dom Exceptions
- *
  * @category   Zend
- * @package    Zend_Dom
+ * @package    Zend_Service
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-interface Exception
+class UnexpectedValueException extends \UnexpectedValueException implements Exception
 {
 }

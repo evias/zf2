@@ -13,37 +13,21 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Soap
- * @subpackage WSDL
+ * @package    Zend_Dom
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace Zend\Soap\Wsdl;
+namespace Zend\Dom\Exception;
 
 /**
- * Interface strategies that generate an XSD-Schema for complex data types in WSDL files.
+ * Zend_Dom Exceptions
  *
  * @category   Zend
- * @package    Zend_Soap
- * @subpackage WSDL
+ * @package    Zend_Dom
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-interface ComplexTypeStrategy
+interface ExceptionInterface
 {
-    /**
-     * Method accepts the current WSDL context file.
-     *
-     * @param <type> $context
-     */
-    public function setContext(\Zend\Soap\Wsdl $context);
-
-    /**
-     * Create a complex type based on a strategy
-     *
-     * @param  string $type
-     * @return string XSD type
-     */
-    public function addComplexType($type);
 }
